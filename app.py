@@ -8,14 +8,14 @@ app.config['SECRET_KEY'] = "thisisme"
 
 debug = DebugToolbarExtension(app)
 
-
 # base.hmtl: title & body
-
 # localhost:5000/
-
 # 5 lines/inputs ****maybe some flexibility here??***
-
 # {{ {noun} }} <inputs name='noun'>
 # {{ {verb} }}
-
 # <submit button action='/results' method='??'>
+
+
+@app.get('/')
+def index():
+    return render_template("questions.html")
