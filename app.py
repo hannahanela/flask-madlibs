@@ -4,7 +4,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from stories import silly_story
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "secret"
+app.config['SECRET_KEY'] = "thisisme"
 
 debug = DebugToolbarExtension(app)
 
