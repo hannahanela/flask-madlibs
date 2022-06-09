@@ -18,6 +18,8 @@ debug = DebugToolbarExtension(app)
 
 @app.get('/')
 def index():
-    noun = request.args["noun"]
-    
-    return render_template("questions.html", noun=noun)
+
+    prompts = silly_story.prompts
+
+
+    return render_template("questions.html", prompts = prompts)
