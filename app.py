@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask_debugtoolbar import DebugToolbarExtension
 
-from stories import silly_story, excited_story
+from stories import stories
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "thisisme"
@@ -15,67 +15,39 @@ debug = DebugToolbarExtension(app)
 # {{ {verb} }}
 # <submit button action='/results' method='??'>
 
-# 1. make new template for story selection
-# 2. make new route to render story selection
-# 3. update '/' to render selection template
-
 
 @app.get('/')
 def index():
-    print(silly_story)
-    print(excited_story)
+    """Render homepage"""
+
     return render_template("selection.html")
 
+    # original solution, saved for comparison
     # prompts = silly_story.prompts
-
     # return render_template("questions.html", prompts = prompts)
+
 
 @app.get('/prompts')
 def display_prompts():
+    """Display prompts for user input"""
 
-    #prompts = silly_story.prompts
-    # prompts = request.args.get(f"story").prompts
+    story = request.args.get(f"story")
+    prompts = stories[story].prompts
 
-    prompts1 = silly_story.prompts
-    prompts2 = excited_story.prompts
-
-    story_instance = request.args.get(f"story")
-
-    if story_instance == 'silly_story':
-        prompts = prompts1
-    if story_instance == 'excited_story':
-        prompts = prompts2
-
-
-    return render_template("questions.html", prompts = prompts)
-
+    return render_template("questions.html", story=story, prompts=prompts)
 
 
 @app.get('/results/<story>')
-def create_story():
+def create_story(story):
     """Create MadLib from user input"""
 
-    # create dict from {prompt: input}
-    # silly_story.generate(dict)
-    # return render_template(story.html, )
+    prompts = stories[story].prompts
 
-    # dictionary keys = <input name="{{prompt}}"
-    # dictionary values = value of the input itself
-
-
-    # prompts = silly_story.prompts
-
-    print(request.args)
     ans = {}
 
-    # for prompt in prompts:
-    #     ans[prompt] = request.args.get(f"{prompt}")
+    for prompt in prompts:
+        ans[prompt] = request.args.get(f"{prompt}")
 
-    # noun = request.args["noun"]
+    result = stories[story].generate(ans)
 
-    #  = request.args.get()
-
-    # story = silly_story.generate(ans)
-
-    # return render_template("story.html", story=story)
-    return render_template("story.html")
+    return render_template("story.html", result=result)
