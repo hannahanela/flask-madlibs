@@ -50,3 +50,9 @@ excited_story = Story(
     ["noun", "verb"],
     """OMG!! OMG!! I love to {verb} a {noun}!"""
 )
+
+# Store instances of our Story class here
+stories = {
+    'silly_story': silly_story,
+    'excited_story': excited_story,
+}
