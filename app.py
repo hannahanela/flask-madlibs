@@ -29,6 +29,12 @@ def index():
 
     # return render_template("questions.html", prompts = prompts)
 
+@app.get('/prompts')
+def display_prompts():
+
+    prompts = silly_story.prompts
+    return render_template("questions.html", prompts = prompts)
+
 
 @app.get('/results')
 def create_story():
