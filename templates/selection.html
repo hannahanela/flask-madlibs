@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Choose Story {% endblock %}
+
+{% block content %}
+
+<h1 class="pt-4 mb-3 text-center">Madlibs!</h1>
+
+<!-- TODO: action= ROUTE PATH -->
+<form action="/results" class="pb-4">
+
+  <div class="mb-3 row">
+    <label class="col-5 col-form-label text-end" for="story-select">Choose a story!</label>
+      <select name="stories" id="story-select">
+        <option value="">Please choose an option.</option>
+        <option value="silly">Silly story</option>
+        <option value="excited">Excited story</option>
+      </select>
+  </div>
+  <button class="btn btn-primary btn-lg w-100">
+    Give me the prompts!
+  </button>
+</form>
+
+{% endblock %}

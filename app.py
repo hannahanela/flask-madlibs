@@ -15,13 +15,19 @@ debug = DebugToolbarExtension(app)
 # {{ {verb} }}
 # <submit button action='/results' method='??'>
 
+# 1. make new template for story selection
+# 2. make new route to render story selection
+# 3. update '/' to render selection template
+
 
 @app.get('/')
 def index():
 
-    prompts = silly_story.prompts
+    return render_template("selection.html")
 
-    return render_template("questions.html", prompts = prompts)
+    # prompts = silly_story.prompts
+
+    # return render_template("questions.html", prompts = prompts)
 
 
 @app.get('/results')
