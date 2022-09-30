@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask_debugtoolbar import DebugToolbarExtension
 
-from stories import silly_story
+from stories import silly_story, excited_story
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "thisisme"
@@ -22,7 +22,8 @@ debug = DebugToolbarExtension(app)
 
 @app.get('/')
 def index():
-
+    print(silly_story)
+    print(excited_story)
     return render_template("selection.html")
 
     # prompts = silly_story.prompts
@@ -32,8 +33,22 @@ def index():
 @app.get('/prompts')
 def display_prompts():
 
-    prompts = silly_story.prompts
+    #prompts = silly_story.prompts
+    # prompts = request.args.get(f"story").prompts
+
+    prompts1 = silly_story.prompts
+    prompts2 = excited_story.prompts
+
+    story_instance = request.args.get(f"story")
+
+    if story_instance == 'silly_story':
+        prompts = prompts1
+    if story_instance == 'excited_story':
+        prompts = prompts2
+
+
     return render_template("questions.html", prompts = prompts)
+
 
 
 @app.get('/results')
@@ -47,7 +62,9 @@ def create_story():
     # dictionary keys = <input name="{{prompt}}"
     # dictionary values = value of the input itself
 
-    prompts = silly_story.prompts
+
+    # prompts = silly_story.prompts
+
 
     ans = {}
 
