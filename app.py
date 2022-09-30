@@ -51,7 +51,7 @@ def display_prompts():
 
 
 
-@app.get('/results')
+@app.get('/results/<story>')
 def create_story():
     """Create MadLib from user input"""
 
@@ -65,16 +65,17 @@ def create_story():
 
     # prompts = silly_story.prompts
 
-
+    print(request.args)
     ans = {}
 
-    for prompt in prompts:
-        ans[prompt] = request.args.get(f"{prompt}")
+    # for prompt in prompts:
+    #     ans[prompt] = request.args.get(f"{prompt}")
 
     # noun = request.args["noun"]
 
     #  = request.args.get()
 
-    story = silly_story.generate(ans)
+    # story = silly_story.generate(ans)
 
-    return render_template("story.html", story=story)
+    # return render_template("story.html", story=story)
+    return render_template("story.html")
