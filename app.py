@@ -20,7 +20,7 @@ debug = DebugToolbarExtension(app)
 def index():
     """Render homepage"""
 
-    return render_template("selection.html")
+    return render_template("selection.html", stories=stories)
 
     # original solution, saved for comparison
     # prompts = silly_story.prompts

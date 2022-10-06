@@ -11,8 +11,9 @@
   <div class="mb-3 row">
     <label class="col-5 col-form-label text-end" for="story-select">Choose a story!</label>
       <select name="story" required id="story-select">
-        <option value="silly_story">Silly story</option>
-        <option value="excited_story">Excited story</option>
+        {% for story in stories%}
+        <option value={{story}}>{{story[name]}}</option>
+        {% endfor %}
       </select>
   </div>
   <button class="btn btn-primary btn-lg w-100">
