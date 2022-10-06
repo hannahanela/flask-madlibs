@@ -11,8 +11,8 @@
   <div class="mb-3 row">
     <label class="col-5 col-form-label text-end" for="story-select">Choose a story!</label>
       <select name="story" required id="story-select">
-        {% for story in stories%}
-        <option value={{story}}>{{story[name]}}</option>
+        {% for (key, story_instance) in stories.items() %}
+        <option value={{key}}>{{ story_instance.name }}</option>
         {% endfor %}
       </select>
   </div>
